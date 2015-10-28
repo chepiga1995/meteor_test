@@ -15,8 +15,18 @@ Template.body.helpers({
     return Tasks.find({checked: {$ne: true}}).count();
   }
 });
-Template.task.helpers({
-  isOwner: function () {
-    return this.owner === Meteor.userId();
+// Template.task.helpers({
+//   isOwner: function () {
+//     return this.owner === Meteor.userId();
+//   }
+// });
+Template.map.helpers({  
+  mapOptions: function() {
+    if (GoogleMaps.loaded()) {
+      return {
+        center: new google.maps.LatLng(35.68407153797412, 139.75292899820488),
+        zoom: 11
+      };
+    }
   }
 });

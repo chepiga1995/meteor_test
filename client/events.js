@@ -35,15 +35,36 @@ Template.authorization.events({
   }
 });
 
-Template.task.events({
-  "click .toggle-checked": function () {
-    // Set the checked property to the opposite of its current value
-    Meteor.call("setChecked", this._id, ! this.checked);
-  },
-  "click .delete": function () {
-    Meteor.call("deleteTask", this._id);
-  },
-  "click .toggle-private": function () {
-    Meteor.call("setPrivate", this._id, ! this.private);
+// Template.task.events({
+//   "click .toggle-checked": function () {
+//     // Set the checked property to the opposite of its current value
+//     Meteor.call("setChecked", this._id, ! this.checked);
+//   },
+//   "click .delete": function () {
+//     Meteor.call("deleteTask", this._id);
+//   },
+//   "click .toggle-private": function () {
+//     Meteor.call("setPrivate", this._id, ! this.private);
+//   }
+// });
+
+Template.query.events({
+  'keypress #venueQuery': function(event,template){
+
+    if(event.keyCode != 13)
+      return 0;
+
+    var params = {
+             ll:"35.684071537,139.75292899",
+             query:template.$('#venueQuery').val(),
+             limit:10,
+             radius: 6000
+        }; 
+    Meteor.call('getVenues', params, function(err, res){
+      if(!err){
+        return console.log(res);
+        Session.set('venues', res);
+      }
+    });
   }
 });
