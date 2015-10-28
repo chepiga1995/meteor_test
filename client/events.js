@@ -62,7 +62,7 @@ Template.query.events({
         }; 
     Meteor.call('getVenues', params, function(err, res){
       if(!err){
-        return console.log(res);
+        console.log(res);
         Session.set('venues', res);
       }
     });

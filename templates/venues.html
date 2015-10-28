@@ -1,5 +1,27 @@
 <template name="venues">
-{{#each venues}}
+<table class="table table-hover">
+	<thead>
+		<tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Street Address</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+	</thead>
+	<tbody>
+		{{#each venues}}
+			<tr>
+				<td>{{@index}}</td>
+				<td>{{this.name}}</td>
+				<td>{{this.location.city}}</td>
+				<td>{{this.location.address}}</td>
+				<td>{{this.location.lat}}</td>
+				<td>{{this.location.lng}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
 
-{{}}
 </template>
