@@ -1,4 +1,18 @@
 <template name="query">
-  <input type="text" id="venueQuery">
-
+	<form id="query" class="form-inline">
+		<div class="form-group">
+			<label for="venueQuery">Query:</label>
+			<input type="text" class="form-control" id="venueQuery" placeholder="Query">
+		</div>
+		<div class="form-group">
+			<label for="venueRadius">Radius:</label>
+			<input type="number" class="form-control" id="venueRadius" placeholder="Radius">
+		</div>
+		<div class="form-group">
+			<label for="venueLimit">Limit:</label>
+	    	<input type="number" class="form-control" id="venueLimit" placeholder="Limit">
+		</div>
+		<button type="submit" class="btn btn-success">Find</button>
+		<button type="reset" class="btn btn-danger">Reset</button>
+	</form>
 </template>

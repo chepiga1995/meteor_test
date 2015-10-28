@@ -9,7 +9,7 @@ Meteor.publish("tasks", function () {
 
 
 Accounts.onCreateUser(function(options, user) {
-	console.log(user);
+	// console.log(user);
 	user.profile = {};
 	user.profile.email = user.services.google.email;
 	user.profile.name = user.services.google.name;

@@ -48,23 +48,27 @@ Template.authorization.events({
 //   }
 // });
 
-Template.query.events({
-  'keypress #venueQuery': function(event,template){
 
-    if(event.keyCode != 13)
-      return 0;
+Template.query.events({
+  'submit #query': function(event,template){
+    event.preventDefault();
 
     var params = {
              ll:"35.684071537,139.75292899",
-             query:template.$('#venueQuery').val(),
-             limit:10,
-             radius: 6000
+             query: template.$('#venueQuery').val(),
+             limit: template.$('#venueLimit').val(),
+             radius: template.$('#venueRadius').val()
         }; 
     Meteor.call('getVenues', params, function(err, res){
-      if(!err){
-        console.log(res);
-        Session.set('venues', res);
-      }
+      if(err)
+        return 0;
+      // console.log(res);
+      Session.set('venues', res);
+      
+      
     });
+    template.$('#venueQuery').val('');
+    template.$('#venueLimit').val('');
+    template.$('#venueRadius').val('');
   }
 });

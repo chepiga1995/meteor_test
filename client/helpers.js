@@ -32,7 +32,7 @@ Template.map.helpers({
 });
 Template.venues.helpers({
   venues: function(){
-    console.log(Session.get('venues'));
+    // console.log(Session.get('venues'));
     return Session.get('venues');
   }
 });
