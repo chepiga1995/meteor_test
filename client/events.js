@@ -15,9 +15,25 @@ Template.body.events({
   "change .hide-completed input": function (event) {
     Session.set("hideCompleted", event.target.checked);
   }
+  
 });
 
-
+Template.authorization.events({
+  "click #in": function(){
+    Meteor.loginWithGoogle({
+      requestPermissions: ['email', 'profile']
+    }, function (err) {
+      if (err)
+        Session.set('errorMessage', err.reason || 'Unknown error');
+    });
+  },
+  "click #out": function(){
+    Meteor.logout(function(err){
+      if (err)
+        Session.set('errorMessage', err.reason || 'Unknown error');
+    })
+  }
+});
 
 Template.task.events({
   "click .toggle-checked": function () {
@@ -30,7 +46,4 @@ Template.task.events({
   "click .toggle-private": function () {
     Meteor.call("setPrivate", this._id, ! this.private);
   }
-});
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
 });

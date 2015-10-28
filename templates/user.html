@@ -1,0 +1,9 @@
+<template name="authorization">
+	{{#if currentUser}}
+		<button id="out" type="button" class="btn btn-default navbar-btn navbar-right">Logout</button>
+		<p class="navbar-text navbar-right"><img class="logo img-thumbnail" src="{{currentUser.profile.picture}}" alt="{{currentUser.profile.email}}">{{currentUser.profile.name}}</p>
+		
+	{{else}} 
+		<button id="in" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
+	{{/if}}
+</template>
