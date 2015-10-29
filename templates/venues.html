@@ -1,4 +1,6 @@
 <template name="venues">
+<h4 class="pull-left">Venues {{venues.length}}</h4>
+<button type="button" class="btn btn-default pull-right">Export CSV</button>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -17,8 +19,8 @@
 				<td>{{this.name}}</td>
 				<td>{{this.location.city}}</td>
 				<td>{{this.location.address}}</td>
-				<td>{{this.location.lat}}</td>
-				<td>{{this.location.lng}}</td>
+				<td>{{setPrecision this.location.lat}}</td>
+				<td>{{setPrecision this.location.lng}}</td>
 			</tr>
 		{{/each}}
 	</tbody>

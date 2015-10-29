@@ -27,3 +27,6 @@ Template.registerHelper('formatDate', function(date) {
 Template.registerHelper('plusOne', function(num) {
   return num + 1;
 });
+Template.registerHelper('setPrecision', function(num) {
+  return num.toFixed(7);
+});
