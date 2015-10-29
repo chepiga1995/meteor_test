@@ -22,7 +22,21 @@ Template.history.events({
     Meteor.call('deleteQuery', id);
   }
 });
-
+Template.venues.events({
+  'click .btn-default': function(event){   
+    var venues = Session.get('venues');
+    Meteor.call('toCSV', venues, function(err, res){
+      var myBlob = new Blob([res], {type : 'text/html'});
+      console.log('kkk');
+      var a = window.document.createElement("a");
+      a.href = window.URL.createObjectURL(myBlob);
+      a.download = "contacts.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  }
+});
 Template.query.events({
   'submit #query': function(event,template){
     event.preventDefault();
@@ -44,7 +58,7 @@ Template.query.events({
     Meteor.call('getVenues', params, function(err, res){
       if(err)
         return 0;
-      
+      console.log(res);
       Session.set('venues', res); 
     });
     Meteor.call('addQuery', query, radius, limit);

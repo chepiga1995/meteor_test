@@ -24,13 +24,13 @@ Template.map.onCreated(function() {
 	    	res.forEach(function(document){
 				var marker = new google.maps.Marker({
 					animation: google.maps.Animation.DROP,
-					position: new google.maps.LatLng(document.location.lat, document.location.lng),
+					position: new google.maps.LatLng(document.lat, document.lng),
 					map: map.instance,
 					id: document.id
 				});
 				var content = '<h4>' + document.name + '</h4><br><b>Address: </b>'
-					+ document.location.address + '<br><b>City: </b>'
-					+ document.location.city;
+					+ document.address + '<br><b>City: </b>'
+					+ document.city;
 				var infowindow = new google.maps.InfoWindow({
 				    content: content
 				});
