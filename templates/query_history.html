@@ -1,0 +1,26 @@
+<template name="history">
+<table class="table table-hover">
+	<thead>
+		<tr>
+          <th>#</th>
+          <th>Query</th>
+          <th>Radius</th>
+          <th>Limit</th>
+          <th>Date</th>
+          <th>Remove</th>
+        </tr>
+	</thead>
+	<tbody>
+		{{#each history}}
+			<tr id="{{this._id}}">
+				<td>{{plusOne @index}}</td>
+				<td>{{this.query}}</td>
+				<td>{{this.radius}}</td>
+				<td>{{this.limit}}</td>
+				<td>{{formatDate this.date}}</td>
+				<td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
+</template>

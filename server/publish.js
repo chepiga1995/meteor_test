@@ -1,15 +1,9 @@
-Meteor.publish("tasks", function () {
-	return Tasks.find({
-		$or: [
-			{ private: {$ne: true} },
-			{ owner: this.userId }
-		]
-	});
+Meteor.publish("history", function () {
+	return QueryHistory.find({owner: this.userId });
 });
 
 
 Accounts.onCreateUser(function(options, user) {
-	// console.log(user);
 	user.profile = {};
 	user.profile.email = user.services.google.email;
 	user.profile.name = user.services.google.name;

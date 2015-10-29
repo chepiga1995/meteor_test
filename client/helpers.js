@@ -1,25 +1,10 @@
-Template.body.helpers({
-  tasks: function () {
-    if (Session.get("hideCompleted")) {
-      // If hide completed is checked, filter tasks
-      return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
-    } else {
-      // Otherwise, return all of the tasks
-      return Tasks.find({}, {sort: {createdAt: -1}});
-    }
-  },
-  hideCompleted: function () {
-    return Session.get("hideCompleted");
-  },
-  incompleteCount: function () {
-    return Tasks.find({checked: {$ne: true}}).count();
+QueryHistory = new Mongo.Collection('history');
+
+Template.history.helpers({
+  history: function(){
+    return QueryHistory.find();
   }
 });
-// Template.task.helpers({
-//   isOwner: function () {
-//     return this.owner === Meteor.userId();
-//   }
-// });
 Template.map.helpers({  
   mapOptions: function() {
     if (GoogleMaps.loaded()) {
@@ -32,7 +17,13 @@ Template.map.helpers({
 });
 Template.venues.helpers({
   venues: function(){
-    // console.log(Session.get('venues'));
     return Session.get('venues');
   }
+});
+
+Template.registerHelper('formatDate', function(date) {
+  return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+});
+Template.registerHelper('plusOne', function(num) {
+  return num + 1;
 });

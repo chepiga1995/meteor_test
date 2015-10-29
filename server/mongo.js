@@ -1,0 +1,1 @@
+QueryHistory = new Mongo.Collection('history');

@@ -14,38 +14,26 @@
         </div>
       </div>
     </nav>
-    <div id="inner">
-      <div class="query">
-        {{> query}}
+    {{#if currentUser}}
+      <div id="inner">
+        <h3 class="text-center">History:</h3>
+        <div class="history">
+          {{> history}}
+        </div>
+        <h3 class="text-center">Find:</h3>
+        <div class="query">
+          {{> query}}
+        </div>
+        <h3 class="text-center">Map:</h3>
+        <div class="google_map">
+          {{> map}}
+        </div>
+        <h3 class="text-center">Result:</h3>
+        <div class="venues">
+          {{> venues}}
+        </div>
       </div>
-      <div class="google_map">
-        {{> map}}
-      </div>
-      <div class="venues">
-        {{> venues}}
-      </div>
-    </div>
+    {{/if}}
   </div>
-  <!-- <div class="container">
-    <header>
-      <h1>Todo List {{incompleteCount}}</h1>
-      <label class="hide-completed">
-        <input type="checkbox" checked="{{hideCompleted}}" />
-        Hide Completed Tasks
-      </label>
-      {{> loginButtons}}
-      {{#if currentUser}}
-        <form class="new-task">
-          <input type="text" name="text" placeholder="Type to add new tasks" />
-        </form>
-      {{/if}}
-    </header>
-    
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
-  </div> -->
 </body>
  
